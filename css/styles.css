@@ -2,3 +2,107 @@ body {
     background-color: #192f5e;
     font-family: sans-serif;
 }
+
+.inner-container {
+    max-width:75rem;
+    margin:0 auto;
+    padding: 0 1rem;
+}
+
+.flex {
+    display:flex;
+    justify-content:space-between;
+    align-items: center;
+}
+
+/* Step 1: Style the 'showing' state of the menu, starting with the mobile view. Style the layout and link for how they will look when visible. */
+
+header {
+    padding:2rem 0;
+    background-color:#fff;
+}
+
+.menu a {
+    color:#3f3f3f;
+    text-decoration:none;
+    display:block;
+    margin-bottom:0.5rem;
+}
+
+.menu a:hover,
+.menu a:active {
+    background-color:gainsboro;
+    border-radius:4px;
+}
+
+.menu li {
+    line-height:40px;
+    text-align:center;
+}
+
+button {
+    border:none;
+    background-color:#fff;
+}
+
+button:hover {
+    cursor:pointer;
+}
+
+svg {
+    fill:#3f3f3f;
+}
+
+/* Step 2: Now hide the menu Once it's hidden this will be the default stage on load. FYI - The display property can't be transitioned, instead, hide the nav by making its max-height 0 */
+
+header nav {
+    /* Style this so it will overlap the main content */
+    /* This element will be absolute to the viewport */
+    /* Add in left and top values. Left: 0, top: header height */
+    position:absolute;
+    left:0;
+    top:113px;
+    background-color:#fff;
+    width:100vw;
+    max-height:0;
+    overflow:hidden;
+    transition: max-height 1s ease-in-out;
+}
+
+/* Step 3: Create a special class to show the menu. This class name will only exist in the CSS for now. Next the JS will add this class to the hidden element for us (nav) */
+
+.show-nav {
+    max-height:250px;
+}
+
+/* Step 4: Add a media query and show the nav by default. Hide the button and style it as a horizontal nav. */
+
+@media screen and (min-width: 700px) {
+    .menu-button {
+        display:none;
+    }
+
+    header nav {
+        max-height:200px;
+        overflow:visible;
+        position:static;
+        width:unset;
+    }
+
+    ul.menu {
+        display:flex;
+        gap:1rem;
+    }
+
+    ul.menu a {
+        padding: 0 1rem;
+        min-width:5rem;
+        margin:0;
+    }
+
+    .inner-container {
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+    }
+}
